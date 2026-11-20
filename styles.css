@@ -5619,3 +5619,45 @@ p.hero-headline-v2.hero-config-pill em { color: #F3D9A4 !important; font-weight:
   .price-grid.pg-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
   .price-grid.pg-2 .signature-card { grid-column: 1 / -1; }
 }
+
+/* ============================================================
+   v4 - Locked "Best Price" teaser chips (blurred, tap to unlock on WhatsApp)
+   ============================================================ */
+.pp-lock-hint { display: flex; align-items: center; gap: 0.45rem; margin: 0.55rem 0 0; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em; color: #9a6b1f; }
+.pp-lock-dot { width: 7px; height: 7px; border-radius: 50%; background: #b1392e; animation: hpPulse 1.8s ease-out infinite; flex-shrink: 0; }
+.pp-lock {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  margin-left: 0.15rem; padding: 0.22rem 0.6rem 0.22rem 0.45rem;
+  border-radius: 999px; text-decoration: none; white-space: nowrap;
+  background: linear-gradient(100deg, #fbf3e2 0%, #f3dfb4 50%, #fbf3e2 100%); background-size: 200% 100%;
+  border: 1px dashed #c9a35e;
+  box-shadow: 0 6px 16px -10px rgba(201,163,94,0.9);
+  animation: tkSheen 3.5s linear infinite;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.pp-lock:hover { transform: translateY(-1px); box-shadow: 0 10px 20px -10px rgba(201,163,94,1); }
+.pp-lock svg { width: 13px; height: 13px; fill: none; stroke: #8a5a12; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.pp-lock-amt { font-size: 13px; font-weight: 700; color: #005544; filter: blur(4px); user-select: none; -webkit-user-select: none; pointer-events: none; }
+.pp-lock-lbl { font-size: 9.5px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #8a5a12; }
+.pp-lock-dark { background: rgba(243,217,164,0.14); border-color: rgba(243,217,164,0.75); box-shadow: none; animation: none; }
+.pp-lock-dark svg { stroke: #F3D9A4; }
+.pp-lock-dark .pp-lock-amt { color: #ffffff; }
+.pp-lock-dark .pp-lock-lbl { color: #F3D9A4; }
+@media (max-width: 520px) {
+  .pc-pair .pp-lock { margin-left: 0; }
+  .tk-table td .pp-lock { padding: 0.2rem 0.4rem; gap: 0.2rem; }
+  .tk-table td .pp-lock-amt { font-size: 11px; }
+  .tk-table td .pp-lock-lbl { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .pp-lock, .pp-lock-dot { animation: none; } }
+/* v4 mobile: T11 table keeps 3 columns (locks stay in the price cards above); CTA fits */
+@media (max-width: 520px) {
+  .tk-table thead th:nth-child(4) { font-size: 0; }
+  .tk-table thead th:nth-child(4)::after { content: 'Best'; font-size: 9.5px; }
+  .tk-table td .pp-lock-amt { display: none; }
+  .tk-table td .pp-lock { padding: 0.3rem 0.45rem; }
+  .tk-table thead th:first-child, .tk-table tbody th, .tk-table tfoot th { width: 30%; }
+  .btn.tk-cta { font-size: 13.5px; padding: 0.95rem 1rem; gap: 0.4rem; }
+  .tk-cta-badge { font-size: 9.5px; padding: 0.2rem 0.4rem; }
+}
+@media (max-width: 520px) { .tk-lock-note { display: none; } }
